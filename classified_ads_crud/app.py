@@ -1,10 +1,19 @@
+import http
+
 from flask import Flask
 from flask_marshmallow import Marshmallow
 from flask_restful import Api
 
 app = Flask(__name__)
-
-api = Api(app)
+api = Api(
+    app,
+    errors={
+        "ResourceDoesNotExist": {
+            "status": http.HTTPStatus.GONE,
+            "message": "A resource with that ID no longer exists.",
+        }
+    },
+)
 ma = Marshmallow(app)
 
 from classified_ads_crud.database import init_db, db_session

@@ -1,7 +1,6 @@
-import sqlalchemy
-
 from classified_ads_crud.database import db_session
 from classified_ads_crud.models.ad import Ad
+from classified_ads_crud.resources.base import ResourceDoesNotExist
 from classified_ads_crud.services.services_v1.ads_services_v1 import AdsServicesV1
 
 
@@ -20,7 +19,7 @@ class AdServiceV1(AdsServicesV1):
         with db_session() as session:
             ad: Ad = session.query(Ad).get(int(id))
             if not ad:
-                raise sqlalchemy.orm.exc.NoResultFound()
+                raise ResourceDoesNotExist()
             return cls(ad=ad)
 
     def delete_ad(self):
