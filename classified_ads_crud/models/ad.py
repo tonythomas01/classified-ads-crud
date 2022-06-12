@@ -1,7 +1,7 @@
 from sqlalchemy import CheckConstraint, Column, Integer, String, Text
 
 from classified_ads_crud.database import Base
-from classified_ads_crud.models.base_model import BaseModelMixin
+from classified_ads_crud.models.base_model_mixin import BaseModelMixin
 
 
 class Ad(BaseModelMixin, Base):

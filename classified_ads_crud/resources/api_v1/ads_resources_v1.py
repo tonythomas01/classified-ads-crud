@@ -21,7 +21,7 @@ class AdsResourceV1(ResourceBase):
 
         ads_service_v1 = AdsServicesV1()
         created_ad = ads_service_v1.create_ad(incoming_ad=incoming_body)
-        return ads_service_v1.serialize_ads(ads=[created_ad])
+        return ads_service_v1.serialize_ad(ad=created_ad)
 
     def get(self):
         ads_service_v1 = AdsServicesV1()
