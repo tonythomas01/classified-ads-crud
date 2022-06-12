@@ -21,7 +21,7 @@ from classified_ads_crud.resources.api_v1.ad_resources_v1 import AdResourceV1
 from classified_ads_crud.resources.api_v1.ads_resources_v1 import AdsResourceV1
 
 api.add_resource(AdsResourceV1, "/api/v1/ads/")
-api.add_resource(AdResourceV1, "/api/v1/ads/<int:id>/")
+api.add_resource(AdResourceV1, "/api/v1/ads/<int:ad_id>/")
 
 
 if __name__ == "__main__":
