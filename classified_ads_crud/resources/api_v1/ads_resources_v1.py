@@ -2,7 +2,6 @@ import typing
 
 import marshmallow
 from flask import request
-from marshmallow import ValidationError
 
 from classified_ads_crud.resources.base import ResourceBase
 from classified_ads_crud.schemas.schemas_v1.ad_schema_v1 import AdSchemaV1
