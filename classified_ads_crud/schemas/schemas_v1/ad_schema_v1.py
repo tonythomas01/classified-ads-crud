@@ -1,8 +1,9 @@
 from marshmallow import fields
-from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
+
+from classified_ads_crud.app import ma
 
 
-class AdSchemaV1(SQLAlchemyAutoSchema):
+class AdSchemaV1(ma.SQLAlchemyAutoSchema):
     created_at = fields.DateTime(
         data_key="createdAt",
         attribute="created_at",
