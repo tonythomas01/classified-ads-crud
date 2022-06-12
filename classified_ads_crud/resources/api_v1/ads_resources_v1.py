@@ -1,16 +1,16 @@
 import typing
-from dataclasses import dataclass
 
 import marshmallow
 from flask import request
+from marshmallow import ValidationError
 
 from classified_ads_crud.resources.base import ResourceBase
+from classified_ads_crud.schemas.schemas_v1.ad_schema_v1 import AdSchemaV1
 from classified_ads_crud.schemas.schemas_v1.request_args_v1 import RequestArgsV1
 from classified_ads_crud.services.services_v1.ads_services_v1 import (
     AdsServicesV1,
     SortArgsDTO,
 )
-from classified_ads_crud.schemas.schemas_v1.ad_schema_v1 import AdSchemaV1
 
 
 class AdsResourceV1(ResourceBase):
@@ -34,7 +34,7 @@ class AdsResourceV1(ResourceBase):
         try:
             query_args = RequestArgsV1().load(request.args)
             sort_args: SortArgsDTO = SortArgsDTO(**query_args)
-        except marshmallow.exceptions.ValidationError as ex:
+        except marshmallow.exceptions.ValidationError:
             # this was a bad argument, just ignore it completely.
             ...
 

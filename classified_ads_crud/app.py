@@ -7,12 +7,6 @@ from flask_restful import Api
 app = Flask(__name__)
 api = Api(
     app,
-    errors={
-        "ResourceDoesNotExist": {
-            "status": http.HTTPStatus.GONE,
-            "message": "A resource with that ID no longer exists.",
-        }
-    },
 )
 ma = Marshmallow(app)
 

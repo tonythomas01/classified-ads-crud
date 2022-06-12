@@ -19,7 +19,10 @@ class AdServiceV1(AdsServicesV1):
         with db_session() as session:
             ad: Ad = session.query(Ad).get(int(id))
             if not ad:
-                raise ResourceDoesNotExist()
+                raise ResourceDoesNotExist(
+                    f"An ad with id: {id} does not " f"exist."
+                )  #
+                # Catched outside.
             return cls(ad=ad)
 
     def delete_ad(self):
