@@ -1,9 +1,15 @@
 import typing
+from dataclasses import dataclass
 
+import marshmallow
 from flask import request
 
 from classified_ads_crud.resources.base import ResourceBase
-from classified_ads_crud.services.services_v1.ads_services_v1 import AdsServicesV1
+from classified_ads_crud.schemas.schemas_v1.request_args_v1 import RequestArgsV1
+from classified_ads_crud.services.services_v1.ads_services_v1 import (
+    AdsServicesV1,
+    SortArgsDTO,
+)
 from classified_ads_crud.schemas.schemas_v1.ad_schema_v1 import AdSchemaV1
 
 
@@ -24,6 +30,14 @@ class AdsResourceV1(ResourceBase):
         return ads_service_v1.serialize_ad(ad=created_ad)
 
     def get(self):
+        sort_args: SortArgsDTO = SortArgsDTO()
+        try:
+            query_args = RequestArgsV1().load(request.args)
+            sort_args: SortArgsDTO = SortArgsDTO(**query_args)
+        except marshmallow.exceptions.ValidationError as ex:
+            # this was a bad argument, just ignore it completely.
+            ...
+
         ads_service_v1 = AdsServicesV1()
-        all_ads = ads_service_v1.get_all_ads()
+        all_ads = ads_service_v1.get_all_ads(sort_args)
         return ads_service_v1.serialize_ads(ads=all_ads)
