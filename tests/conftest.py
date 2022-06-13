@@ -7,7 +7,7 @@ from classified_ads_crud.app import create_app
 from config import Config
 
 
-@pytest.fixture
+@pytest.fixture()
 def client():
     db_fd, random_file = tempfile.mkstemp()
     Config.SQLALCHEMY_DATABASE_URI = f"sqlite:///{random_file}"
@@ -21,6 +21,7 @@ def client():
 
             init_db()
         yield client
+
     os.close(db_fd)
     os.unlink(random_file)
 

@@ -47,3 +47,4 @@ or, likewise for postgresql. The app uses `pythonv3.10`
 $ docker-compose restart 
 ```
 - Web service restarts a bit until potsgresql service is up .
+- Problems running pytest locally via CLI. 
