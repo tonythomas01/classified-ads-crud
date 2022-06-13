@@ -26,6 +26,48 @@ settings by setting the following OS environment variables:
 export SQLALCHEMY_DATABASE_URI=sqlite:////tmp/test.db
 ```
 or, likewise for postgresql. The app uses `pythonv3.10` 
+**Tech used**:
+- Python-Flask for web services 
+- Flask-RESTful for REST services (resources)
+- Flask-SQLAlchemy for talking to DBMS 
+- marshmallow for serialization/de-serialization
+
+**APIs**: 
+
+@TODO: Document this later in swagger or something. 
+* A way to insert a new ad. An ad consists of a subject, a body, an optional 
+price, and
+an email address.
+```
+curl --request POST \
+  --url http://localhost:5000/api/v1/ads/ \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"subject": "Ad Name", 
+	"body": "This is a very short body.", 
+	"price": 50000, 
+	"currency": "SEK", 
+	"email": "teggggter@gmail.com"
+}'
+```
+
+* A way of fetching existing ads. It should be possible to sort the ads on the time they
+were inserted and by their price.
+```
+curl --request GET \
+  --url 'http://localhost:5000/api/v1/ads/?sort=creation&orderBy=asc'
+```
+or 
+```
+curl --request GET \
+  --url 'http://localhost:5000/api/v1/ads/?sort=price&orderBy=asc'
+```
+- A way of deleting a previously inserted ad.
+```
+curl --request DELETE \
+  --url http://localhost:5000/api/v1/ads/1/
+```
+
 
 
 **TODOS**: 
@@ -38,6 +80,7 @@ or, likewise for postgresql. The app uses `pythonv3.10`
   postgresql service is up. 
 - Figure out if changes in the codebase is reflected correctly in the 
   docker environment. We have a volume mount setup, but I could not test it. 
+- Handle migrations. alembic is installed, but not setup. 
 
 
 **Known issues**: 
