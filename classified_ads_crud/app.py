@@ -2,6 +2,7 @@ from flask import Flask
 from flask_marshmallow import Marshmallow
 from flask_restful import Api
 
+
 from config import Config
 
 

@@ -1,4 +1,5 @@
 from classified_ads_crud.database import db_session
+
 from classified_ads_crud.models.ad import Ad
 from classified_ads_crud.resources.base import ResourceDoesNotExist
 from classified_ads_crud.services.services_v1.ads_services_v1 import AdsServicesV1
@@ -26,6 +27,7 @@ class AdServiceV1(AdsServicesV1):
             return cls(ad=ad)
 
     def delete_ad(self):
+        # @TODO: Replace wiht a soft delete.
         with db_session() as session:
             session.delete(self.ad)
             session.commit()

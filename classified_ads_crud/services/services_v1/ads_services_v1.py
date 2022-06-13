@@ -5,7 +5,10 @@ from sqlalchemy import asc, desc
 
 from classified_ads_crud.database import db_session
 from classified_ads_crud.models.ad import Ad
-from classified_ads_crud.schemas.schemas_v1.ad_schema_v1 import AdSchemaV1
+from classified_ads_crud.schemas.schemas_v1.ad_schema_v1 import (
+    AdSchemaV1,
+    AdsListSchema,
+)
 
 
 @dataclass
@@ -16,6 +19,7 @@ class SortArgsDTO:
 
 class AdsServicesV1(object):
     def get_all_ads(self, sort_args: SortArgsDTO):
+        # @Perf: This has to be limit() ed, with pagination
         if sort_args.order_by == "desc":
             applied_sort = desc(sort_args.sort)
         else:
@@ -24,8 +28,9 @@ class AdsServicesV1(object):
         return Ad.query.order_by(applied_sort).all()
 
     def serialize_ads(self, ads: typing.List[Ad]):
-        ad_schema = AdSchemaV1()
-        return ad_schema.dump(ads, many=True)
+        # Separated to support pagination later.
+        ad_schema = AdsListSchema()
+        return ad_schema.dump({"ads": ads}, many=False)
 
     def serialize_ad(self, ad: Ad):
         ad_schema = AdSchemaV1()

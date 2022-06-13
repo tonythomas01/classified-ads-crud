@@ -1,4 +1,5 @@
 from marshmallow import fields
+from marshmallow.schema import BaseSchema
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 
 
@@ -17,3 +18,8 @@ class AdSchemaV1(SQLAlchemyAutoSchema):
             "updated_at",
             "deleted",
         )
+
+
+class AdsListSchema(BaseSchema):
+    # @TODO: Could be extended with pagination later.
+    ads = fields.Nested(AdSchemaV1(), many=True)

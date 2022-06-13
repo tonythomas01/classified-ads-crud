@@ -2,9 +2,8 @@ import typing
 
 import marshmallow
 from flask import request
-from marshmallow import ValidationError
 
-from classified_ads_crud.resources.base import ResourceBase
+from classified_ads_crud.resources.base import ResourceBase, creation_post_response
 from classified_ads_crud.schemas.schemas_v1.ad_schema_v1 import AdSchemaV1
 from classified_ads_crud.schemas.schemas_v1.request_args_v1 import RequestArgsV1
 from classified_ads_crud.services.services_v1.ads_services_v1 import (
@@ -14,6 +13,7 @@ from classified_ads_crud.services.services_v1.ads_services_v1 import (
 
 
 class AdsResourceV1(ResourceBase):
+    method_decorators = {"post": [creation_post_response]}
     """
     List and Create handler for ads.
     """
