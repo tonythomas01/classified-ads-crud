@@ -12,6 +12,6 @@ class ResourceDoesNotExist(Exception):
 class ResourceBase(Resource):
     def dispatch_request(self, *args, **kwargs):
         try:
-            super().dispatch_request(*args, **kwargs)
+            return super().dispatch_request(*args, **kwargs)
         except Exception as ex:
             flask_restful.abort(400, **{"message": str(ex)})

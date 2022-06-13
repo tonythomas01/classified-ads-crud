@@ -21,7 +21,7 @@ RUN pip install -r requirements.txt
 COPY . /usr/src/app/
 
 EXPOSE 5000
-RUN ls -la classified_ads_crud/
+
 RUN ["chmod", "+x", "/usr/src/app/classified_ads_crud/docker-entrypoint.sh"]
 ENTRYPOINT ["classified_ads_crud/docker-entrypoint.sh"]
 

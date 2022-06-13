@@ -11,7 +11,7 @@ class Config:
 
     # Database
     SQLALCHEMY_DATABASE_URI = os.environ.get(
-        "SQLALCHEMY_DATABASE_URI", "postgresql+psycopg2://test:test@0.0.0.0:5401/test"
+        "SQLALCHEMY_DATABASE_URI", "sqlite:////tmp/test.db"
     )
     SQLALCHEMY_USERNAME = "test"
     SQLALCHEMY_PASSWORD = "test"

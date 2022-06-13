@@ -9,7 +9,7 @@ class Ad(BaseModelMixin, Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     subject = Column(String(60), unique=False, nullable=False)
-    body = Column(Text(3000), nullable=False)
+    body = Column(Text, nullable=False)
     email = Column(String(320), nullable=False)
     price = Column(Integer, nullable=True)  # Optional
     currency = Column(String(5), nullable=True)
