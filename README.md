@@ -7,7 +7,8 @@ volume on `./posgres-data` for persistance.
 
 **Setup**: 
 ```
-$ vi env.dev  # Modify the values correctly 
+$ vi .env.dev  # Modify the values correctly 
+$ cp .env.dev .env  
 $ docker-compose build
 $ docker-compose up -d
 ```
