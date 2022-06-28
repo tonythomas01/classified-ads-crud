@@ -1,5 +1,7 @@
 # Classfied Ads CRUD API  
 
+Test playground with `docker-compose`, `Flask` and some `SQLAlchemy`.  
+
 Project structure copied from: https://flask-restful.readthedocs.io/en/latest/intermediate-usage.html#project-structure
 
 Shipped with a `docker-compose` that can setup a PostgresSQL server with 
